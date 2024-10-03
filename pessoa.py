@@ -27,17 +27,21 @@ class Cliente(Pessoa):
     def criar_conta(self, *contas):
         for conta in contas:
             self.contas.append(conta)
+    
     def dados_contas(self):
         print(f'Contas do Cliente {self.nome}')
+        if self.contas == []:
+            return print(f'Este cliente ainda não possui uma conta.')
         for dados in self.contas:
             if dados.__class__.__name__ == 'ContaPoupanca':
                 print(f'Agência: {dados.agencia} Número: {dados.conta} Saldo: R${dados.saldo}')
             else:
-                print(f'Agência: {dados.agencia} Número: {dados.conta} Saldo: R${dados.saldo}\
- Limite: {dados.limite}')
+                print(f'Agência: {dados.agencia} Número: {dados.conta} Saldo: R${dados.saldo}' \
+                    f' Limite: {dados.limite}')       
 
-cp1 = ContaPoupanca('000', '0', 50)
-cc1 = ContaCorrente('001', '0', 542)
-cliente1 = Cliente('João', 25)
-cliente1.criar_conta(cp1, cc1)
-cliente1.dados_contas()
+if __name__ == '__main__':
+    cp1 = ContaPoupanca('000', '0', 50)
+    cc1 = ContaCorrente('001', '0', 542)
+    cliente1 = Cliente('João', 25)
+    cliente1.criar_conta(cp1, cc1)
+    cliente1.dados_contas()
